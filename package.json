@@ -1,0 +1,22 @@
+{
+  "name": "prosiebensat1-exercise",
+  "version": "1.0.0",
+  "description": "api-automation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/civanozbay/prosiebensat1-exercise.git"
+  },
+  "author": "civan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/civanozbay/prosiebensat1-exercise/issues"
+  },
+  "homepage": "https://github.com/civanozbay/prosiebensat1-exercise#readme",
+  "devDependencies": {
+    "cypress": "^13.7.1"
+  }
+}
