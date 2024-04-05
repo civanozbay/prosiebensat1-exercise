@@ -1,10 +1,10 @@
 const AWS = require("aws-sdk");
 AWS.config.update({
-  region: "us-east-1",
-  accessKeyId: "AKIAT2ZYTAFKX32ZRDF5",
-  secretAccessKey: "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",
+  region: Cypress.env("awsRegion"),
+  accessKeyId: Cypress.env("awsAccessKeyId"),
+  secretAccessKey: Cypress.env("awsSecretAccessKey"),
 });
-const s3 = new AWS.S3({});
+
 describe("Lambda Function Integration Test", () => {
   it("should invoke Lambda function successfully", async () => {
     const lambda = new AWS.Lambda();

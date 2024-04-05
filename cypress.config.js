@@ -6,7 +6,10 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
     env: {
-      apiUrl: "https://5fxqbwmm9a.execute-api.us-east-1.amazonaws.com/Prod",
+      apiUrl: "https://9k9jlkn5lj.execute-api.us-east-1.amazonaws.com/Prod",
+      awsAccessKeyId: "AKIAT2ZYTAFKX32ZRDF5",
+      awsSecretAccessKey: "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",
+      awsRegion: "us-east-1",
     },
   },
 });
