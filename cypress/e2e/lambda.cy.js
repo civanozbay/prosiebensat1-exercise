@@ -27,4 +27,13 @@ describe("Lambda Function Integration Test", () => {
       cy.log(result.stdout);
     });
   });
+  it("should read the file and check its content", () => {
+    cy.readFile("./filename.txt").then((text) => {
+      expect(text).to.contain("Hello World");
+    });
+  });
+
+  after(() => {
+    cy.exec("rm ./filename.txt");
+  });
 });
