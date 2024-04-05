@@ -1,45 +1,30 @@
 const AWS = require("aws-sdk");
-const { it } = require("mocha");
-const s3 = new AWS.S3();
-const lambda = new AWS.Lambda();
+AWS.config.update({
+  region: "us-east-1",
+  accessKeyId: "AKIAT2ZYTAFKX32ZRDF5",
+  secretAccessKey: "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",
+});
+const s3 = new AWS.S3({});
+describe("Lambda Function Integration Test", () => {
+  it("should invoke Lambda function successfully", async () => {
+    const lambda = new AWS.Lambda();
 
-const bucketName = "hellooo-world";
-const objectKey = "filename.txt";
-const expectedContent = "Hello World";
+    const params = {
+      FunctionName: "Lambda-to-S3-PutObjectFunction-sAOV1zZ2HgUc",
+    };
 
-describe("Lambda to S3", () => {
-  it("Lambda Test", () => {
-    async function testLambdaWritesToS3() {
-      // Lambda fonksiyonunu tetikle
-      await lambda
-        .invoke({
-          FunctionName: "Lambda-to-S3-PutObjectFunction-sAOV1zZ2HgUc",
-          // Lambda fonksiyonunuza ek parametreler göndermeniz gerekiyorsa, Payload alanını kullanın.
-        })
-        .promise();
+    const result = await lambda.invoke(params).promise();
 
-      // Bekleme (Lambda fonksiyonunun ve S3'e yazmanın tamamlanması için)
-      await new Promise((resolve) => setTimeout(resolve, 5000));
+    expect(result.StatusCode).to.equal(200);
 
-      // S3'ten dosyayı al ve içeriğini kontrol et
-      const object = await s3
-        .getObject({
-          Bucket: bucketName,
-          Key: objectKey,
-        })
-        .promise();
-
-      const content = object.Body.toString("utf-8");
-      console.assert(
-        content === expectedContent,
-        "Dosya içeriği beklenen ile uyuşmuyor."
-      );
-
-      cy.log(
-        "Test başarılı: Lambda fonksiyonu S3 bucketına doğru içerikle dosya yazdı."
-      );
-    }
-
-    testLambdaWritesToS3().catch(console.error);
+    const payload = JSON.parse(result.Payload);
+    expect(payload).to.equal(true);
+  });
+  it("should get the file from S3 and check its content", async () => {
+    cy.exec("bash scripts/getS3Object.sh").then((result) => {
+      // verify script result
+      expect(result.code).to.eq(0);
+      cy.log(result.stdout);
+    });
   });
 });
