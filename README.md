@@ -27,9 +27,10 @@ REST API Automation:
 
 Contains tests for the app's REST APIs, including access control validation using API Gateway with Lambda Token Authorizer.
 Key scenarios include unauthorized access, forbidden actions, and successful invocation with correct tokens.
+
 Lambda Function Triggering & File Content Verification:
 
-Involves triggering a Lambda function and verifying the content of the file it generates.
+This project utilizes bash scripts to interact with AWS services, including triggering Lambda functions and manipulating files in S3 buckets.Involves triggering a Lambda function and verifying the content of the file it generates. **getS3Object.sh** script handles downloading files from S3 buckets, reading their content, and verifying that the content meets our expectations.
 
 ## CI/CD Integration with GitHub Actions
 
