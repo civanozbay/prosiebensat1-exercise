@@ -6,7 +6,7 @@ This project demonstrates automation for REST APIs and triggering AWS Lambda fun
 
 To set up the project locally:
 
-3. **Install dependencies**:
+**Install dependencies**:
    ```bash
    npm install
    ```
